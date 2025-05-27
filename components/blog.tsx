@@ -5,95 +5,9 @@ import { Calendar, Clock, ArrowRight, Tag, User, BookOpen } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRef, useState } from "react"
+import { blogPosts } from "@/app/blog/page"
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "Building Scalable Microservices with Spring Boot",
-    excerpt:
-      "Learn how to design and implement microservices architecture using Spring Boot, Spring Cloud, and best practices for distributed systems.",
-    content:
-      "In this comprehensive guide, we'll explore the fundamentals of microservices architecture and how to implement it effectively using Spring Boot...",
-    image: "/placeholder.svg?height=300&width=500",
-    author: "Nayeem Khan",
-    publishDate: "2024-01-15",
-    readTime: "8 min read",
-    category: "Backend",
-    tags: ["Spring Boot", "Microservices", "Java", "Architecture"],
-  },
-  {
-    id: 2,
-    title: "Modern Frontend Development with Angular 17",
-    excerpt:
-      "Discover the latest features in Angular 17 including standalone components, new control flow syntax, and performance improvements.",
-    content:
-      "Angular 17 brings exciting new features that revolutionize how we build modern web applications. Let's dive into the most important updates...",
-    image: "/placeholder.svg?height=300&width=500",
-    author: "Nayeem Khan",
-    publishDate: "2024-01-10",
-    readTime: "6 min read",
-    category: "Frontend",
-    tags: ["Angular", "TypeScript", "Frontend", "Web Development"],
-  },
-  {
-    id: 3,
-    title: "Optimizing Database Performance in Production",
-    excerpt:
-      "Essential techniques for optimizing database queries, indexing strategies, and monitoring performance in high-traffic applications.",
-    content:
-      "Database performance is crucial for application success. Here are proven strategies to optimize your database for production workloads...",
-    image: "/placeholder.svg?height=300&width=500",
-    author: "Nayeem Khan",
-    publishDate: "2024-01-05",
-    readTime: "10 min read",
-    category: "Database",
-    tags: ["MySQL", "Performance", "Optimization", "Database"],
-  },
-  {
-    id: 4,
-    title: "Implementing CI/CD Pipelines with Docker and AWS",
-    excerpt:
-      "Step-by-step guide to setting up automated deployment pipelines using Docker containers and AWS services for seamless delivery.",
-    content:
-      "Continuous Integration and Deployment are essential for modern software development. Learn how to implement robust CI/CD pipelines...",
-    image: "/placeholder.svg?height=300&width=500",
-    author: "Nayeem Khan",
-    publishDate: "2023-12-28",
-    readTime: "12 min read",
-    category: "DevOps",
-    tags: ["Docker", "AWS", "CI/CD", "DevOps"],
-  },
-  {
-    id: 5,
-    title: "Advanced JavaScript Patterns and Best Practices",
-    excerpt:
-      "Explore advanced JavaScript concepts including closures, prototypes, async patterns, and modern ES6+ features for better code quality.",
-    content:
-      "JavaScript has evolved significantly over the years. Let's explore advanced patterns that will make you a better developer...",
-    image: "/placeholder.svg?height=300&width=500",
-    author: "Nayeem Khan",
-    publishDate: "2023-12-20",
-    readTime: "7 min read",
-    category: "JavaScript",
-    tags: ["JavaScript", "ES6+", "Patterns", "Best Practices"],
-  },
-  {
-    id: 6,
-    title: "Building Responsive UIs with CSS Grid and Flexbox",
-    excerpt:
-      "Master modern CSS layout techniques with practical examples and learn when to use CSS Grid vs Flexbox for different scenarios.",
-    content:
-      "CSS Grid and Flexbox are powerful layout tools. Understanding when and how to use each one will elevate your frontend skills...",
-    image: "/placeholder.svg?height=300&width=500",
-    author: "Nayeem Khan",
-    publishDate: "2023-12-15",
-    readTime: "5 min read",
-    category: "CSS",
-    tags: ["CSS", "Grid", "Flexbox", "Responsive Design"],
-  },
-]
-
-const categories = ["All", "Backend", "Frontend", "Database", "DevOps", "JavaScript", "CSS"]
+const categories = ["All", "Backend", "Frontend", "Database", "DevOps"]
 
 function BlogCard({ post, index }: { post: any; index: number }) {
   const cardRef = useRef(null)
@@ -191,13 +105,17 @@ function BlogCard({ post, index }: { post: any; index: number }) {
   )
 }
 
+export { BlogCard };
+
 export default function Blog() {
   const containerRef = useRef(null)
   const isInView = useInView(containerRef, { once: true, margin: "-100px" })
   const [activeCategory, setActiveCategory] = useState("All")
 
   const filteredPosts =
-    activeCategory === "All" ? blogPosts : blogPosts.filter((post) => post.category === activeCategory)
+    activeCategory === "All"
+      ? blogPosts.slice(0, 6)
+      : blogPosts.filter((post) => post.category === activeCategory).slice(0, 6)
 
   return (
     <section id="blog" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10" ref={containerRef}>
@@ -279,7 +197,7 @@ export default function Blog() {
         >
           <motion.div whileHover={{ y: -3, scale: 1.05 }} transition={{ duration: 0.2 }} className="inline-block">
             <Link
-              href="#all-blogs"
+              href="/blog"
               className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 text-purple-400 hover:text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-all duration-300 rounded-2xl backdrop-blur-sm font-medium"
             >
               <span>View All Blogs</span>

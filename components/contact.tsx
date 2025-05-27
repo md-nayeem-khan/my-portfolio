@@ -4,7 +4,7 @@ import type React from "react"
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, MessageCircle, Zap } from "lucide-react"
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, MessageCircle, Zap, Copy } from "lucide-react"
 
 const contactInfo = [
   {
@@ -43,6 +43,7 @@ export default function Contact() {
 
   const [formStatus, setFormStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
   const [focusedField, setFocusedField] = useState<string | null>(null)
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -64,6 +65,12 @@ export default function Contact() {
       setFormData({ name: "", email: "", subject: "", message: "" })
       setFormStatus("idle")
     }, 3000)
+  }
+
+  const handleCopy = (value: string, index: number) => {
+    navigator.clipboard.writeText(value)
+    setCopiedIndex(index)
+    setTimeout(() => setCopiedIndex(null), 1500)
   }
 
   const getStatusIcon = () => {
@@ -133,7 +140,7 @@ export default function Contact() {
             Get In Touch
           </h2>
           <p className="text-xl text-gray-300 dark:text-gray-300 text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          Open to new opportunities, exciting collaborations, and meaningful conversations about innovation and scalable solutions. Let’s{" "}
+          Open to new opportunities, exciting collaborations, and meaningful conversations about innovation and scalable solutions. Let's{" "}
             <span className="text-purple-400 font-medium">connect</span>.
           </p>
         </motion.div>
@@ -183,11 +190,27 @@ export default function Contact() {
                       </motion.div>
 
                       {/* Info */}
-                      <div className="flex-1">
+                      <div className="flex-1 flex flex-col gap-1">
                         <h3 className="text-lg font-semibold text-white dark:text-white text-gray-900 mb-2 group-hover:text-purple-400 dark:group-hover:text-purple-400 group-hover:text-purple-600 transition-colors duration-300">
                           {info.label}
                         </h3>
-                        <p className="text-gray-300 dark:text-gray-300 text-gray-700 font-medium">{info.value}</p>
+                        <div className="flex items-center gap-2">
+                          <span className="text-gray-300 dark:text-gray-300 text-gray-700 font-medium select-text cursor-text" style={{userSelect: 'text'}}>{info.value}</span>
+                          {info.label !== "Location" && (
+                            <button
+                              type="button"
+                              aria-label={`Copy ${info.label}`}
+                              onClick={e => { e.preventDefault(); handleCopy(info.value, index) }}
+                              className="ml-1 p-1 rounded hover:bg-purple-500/20 transition-colors"
+                            >
+                              {copiedIndex === index ? (
+                                <CheckCircle size={18} className="text-green-400" />
+                              ) : (
+                                <Copy size={18} className="text-gray-400" />
+                              )}
+                            </button>
+                          )}
+                        </div>
                       </div>
                     </div>
 

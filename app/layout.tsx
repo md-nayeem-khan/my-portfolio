@@ -2,6 +2,8 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import Navbar from "@/components/navbar"
+import { usePathname } from "next/navigation"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -16,9 +18,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const pathname = typeof window !== "undefined" ? window.location.pathname : ""
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <link rel="icon" href="/logo.png" type="image/png" />
+      </head>
+      <body className={inter.className}>
+        {pathname === "/" && <Navbar />}
+        {children}
+      </body>
     </html>
   )
 }

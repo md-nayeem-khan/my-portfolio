@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { motion } from "framer-motion"
 import { Github, Linkedin, Mail, ArrowRight, Download } from "lucide-react"
 import Link from "next/link"
@@ -79,6 +79,14 @@ export default function Hero() {
     },
   ]
 
+  const handleSeeMyWorkClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const section = document.getElementById("work");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <motion.div
@@ -142,6 +150,7 @@ export default function Hero() {
           >
             <Link
               href="#work"
+              onClick={handleSeeMyWorkClick}
               className="group relative inline-flex items-center px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-purple-500/25 overflow-hidden"
             >
               {/* Animated background */}
@@ -164,7 +173,7 @@ export default function Hero() {
             className="relative overflow-hidden"
           >
             <Link
-              href="https://drive.google.com/file/d/1wqzer7u349OuY8Snl7fLA041iaLl0yLV/view"
+              href="https://drive.google.com/file/d/1i65Hp3ZRr88pWCXaDDiTujRLActZPqHB/view"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative inline-flex items-center px-8 py-3 border-2 border-gray-600 dark:border-gray-600 border-gray-300 text-gray-300 dark:text-gray-300 text-gray-700 font-semibold rounded-full transition-all duration-300 hover:border-gray-400 hover:text-white dark:hover:text-white backdrop-blur-sm bg-transparent overflow-hidden"

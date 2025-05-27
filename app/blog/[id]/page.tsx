@@ -6,88 +6,7 @@ import { Calendar, Clock, ArrowLeft, Tag, User, Share2, Heart, MessageCircle } f
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-
-// Blog posts data (same as in blog component)
-const blogPosts = [
-  {
-    id: 1,
-    title: "Building Scalable Microservices with Spring Boot",
-    excerpt:
-      "Learn how to design and implement microservices architecture using Spring Boot, Spring Cloud, and best practices for distributed systems.",
-    content: `Test`,
-    image: "/placeholder.svg?height=400&width=800",
-    author: "Nayeem Khan",
-    publishDate: "2023-12-15",
-    readTime: "5 min read",
-    category: "CSS",
-    tags: ["CSS", "Grid", "Flexbox", "Responsive Design"],
-  },
-  {
-    id: 2,
-    title: "Building Scalable Microservices with Spring Boot",
-    excerpt:
-      "Learn how to design and implement microservices architecture using Spring Boot, Spring Cloud, and best practices for distributed systems.",
-    content: `Test`,
-    image: "/placeholder.svg?height=400&width=800",
-    author: "Nayeem Khan",
-    publishDate: "2023-12-15",
-    readTime: "5 min read",
-    category: "CSS",
-    tags: ["CSS", "Grid", "Flexbox", "Responsive Design"],
-  },
-  {
-    id: 3,
-    title: "Building Scalable Microservices with Spring Boot",
-    excerpt:
-      "Learn how to design and implement microservices architecture using Spring Boot, Spring Cloud, and best practices for distributed systems.",
-    content: `Test`,
-    image: "/placeholder.svg?height=400&width=800",
-    author: "Nayeem Khan",
-    publishDate: "2023-12-15",
-    readTime: "5 min read",
-    category: "CSS",
-    tags: ["CSS", "Grid", "Flexbox", "Responsive Design"],
-  },
-  {
-    id: 4,
-    title: "Building Scalable Microservices with Spring Boot",
-    excerpt:
-      "Learn how to design and implement microservices architecture using Spring Boot, Spring Cloud, and best practices for distributed systems.",
-    content: `Test`,
-    image: "/placeholder.svg?height=400&width=800",
-    author: "Nayeem Khan",
-    publishDate: "2023-12-15",
-    readTime: "5 min read",
-    category: "CSS",
-    tags: ["CSS", "Grid", "Flexbox", "Responsive Design"],
-  },
-  {
-    id: 5,
-    title: "Building Scalable Microservices with Spring Boot",
-    excerpt:
-      "Learn how to design and implement microservices architecture using Spring Boot, Spring Cloud, and best practices for distributed systems.",
-    content: `Test`,
-    image: "/placeholder.svg?height=400&width=800",
-    author: "Nayeem Khan",
-    publishDate: "2023-12-15",
-    readTime: "5 min read",
-    category: "CSS",
-    tags: ["CSS", "Grid", "Flexbox", "Responsive Design"],
-  },
-  {
-    id: 6,
-    title: "Building Scalable Microservices with Spring Boot",
-    excerpt:
-      "Learn how to design and implement microservices architecture using Spring Boot, Spring Cloud, and best practices for distributed systems.",
-    content: `Test`,
-    image: "/placeholder.svg?height=400&width=800",
-    author: "Nayeem Khan",
-    publishDate: "2023-12-15",
-    readTime: "5 min read",
-    category: "CSS",
-    tags: ["CSS", "Grid", "Flexbox", "Responsive Design"],
-  },
-]
+import { blogPosts } from "@/app/blog/page"
 
 export default function BlogPost() {
   const params = useParams()
@@ -330,8 +249,7 @@ export default function BlogPost() {
                       return `<li class="mb-2">${line.substring(2)}</li>`
                     }
                     if (line.match(/^\d+\. /)) {
-                      return `<li class="mb-2">${line.replace(/^\d+\. /, "")}</li>`
-                    }
+                      return `<li class="mb-2">${line.replace(/^\d+\. /, "")}</li>`                    }
 
                     // Handle regular paragraphs
                     if (line.trim() && !line.startsWith("<")) {
@@ -460,3 +378,4 @@ export default function BlogPost() {
     </div>
   )
 }
+
