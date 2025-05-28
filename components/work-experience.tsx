@@ -9,7 +9,8 @@ const experiences = [
     id: 1,
     position: "Senior Software Engineer",
     company: "Enosis Solutions",
-    companyLogo: "SSE",
+    companyUrl: "https://www.linkedin.com/company/enosis-solutions/",
+    positionLogo: "SSE",
     companyColor: "bg-purple-600",
     timelineColor: "border-purple-500",
     duration: "2023 - Present",
@@ -30,7 +31,8 @@ const experiences = [
     id: 2,
     position: "Software Engineer",
     company: "Enosis Solutions",
-    companyLogo: "SE",
+    companyUrl: "https://www.linkedin.com/company/enosis-solutions/",
+    positionLogo: "SE",
     companyColor: "bg-pink-600",
     timelineColor: "border-pink-500",
     duration: "2021 - 2022",
@@ -58,12 +60,12 @@ function ExperienceCard({ experience, index }: { experience: any; index: number 
       transition={{ duration: 0.8, delay: index * 0.2 }}
       className="relative flex items-start gap-8"
     >
-      {/* Enhanced company logo */}
+      {/* Enhanced position logo */}
       <motion.div className="flex-shrink-0">
         <div
           className={`w-16 h-16 ${experience.companyColor} rounded-full flex items-center justify-center text-white font-bold text-xl`}
         >
-          {experience.companyLogo}
+          {experience.positionLogo}
         </div>
       </motion.div>
 
@@ -74,7 +76,11 @@ function ExperienceCard({ experience, index }: { experience: any; index: number 
           <div className="mb-6">
             <motion.h3 className="text-2xl font-bold text-white mb-2">{experience.position}</motion.h3>
 
-            <motion.div className="text-xl font-semibold text-purple-400 mb-4">{experience.company}</motion.div>
+            <motion.div className="text-xl font-semibold text-purple-400 mb-4">
+              <a href={experience.companyUrl} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                {experience.company}
+              </a>
+            </motion.div>
 
             {/* Enhanced meta information */}
             <div className="flex flex-wrap gap-4 text-sm text-gray-400">
