@@ -173,7 +173,7 @@ export default function Hero() {
             className="relative overflow-hidden"
           >
             <Link
-              href="https://drive.google.com/file/d/1i65Hp3ZRr88pWCXaDDiTujRLActZPqHB/view"
+              href="https://drive.google.com/drive/folders/1UsQjlaAn86stGcqmgddef44dL4pOB9-i?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative inline-flex items-center px-8 py-3 border-2 border-gray-600 dark:border-gray-600 border-gray-300 text-gray-300 dark:text-gray-300 text-gray-700 font-semibold rounded-full transition-all duration-300 hover:border-gray-400 hover:text-white dark:hover:text-white backdrop-blur-sm bg-transparent overflow-hidden"
